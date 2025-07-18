@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 449103951}
   - component: {fileID: 449103950}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Square1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 1246372657}
   - component: {fileID: 1246372656}
   - component: {fileID: 1246372660}
+  - component: {fileID: 1246372661}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -490,6 +491,7 @@ MonoBehaviour:
   bullet: {fileID: 3573284850550598192, guid: 7abb9a0d889338540baa5e0ffec49495, type: 3}
   shotPoint: {fileID: 1246372658}
   isFacingRight: 1
+  squareObject: {fileID: 0}
 --- !u!212 &1246372657
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -572,6 +574,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99152510cf4b73d40866782e4cb37a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1246372661
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246372655}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b2b3244e1091933468391870f72e0b8e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
