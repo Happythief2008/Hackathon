@@ -1,31 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform target; // µû¶ó°¥ ´ë»ó (ÇÃ·¹ÀÌ¾î)
-    private float fixedY; // Ä«¸Ş¶ó Y °íÁ¤°ª
+    public Transform target;          // ë”°ë¼ê°ˆ ëŒ€ìƒ (í”Œë ˆì´ì–´)
+    private Vector3 offset;           // ì´ˆê¸° ì¹´ë©”ë¼â€‘í”Œë ˆì´ì–´ ê°„ ê±°ë¦¬
 
     void Start()
     {
         if (target == null)
         {
-            Debug.LogWarning("CameraFollow: Å¸°ÙÀÌ ÁöÁ¤µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+            Debug.LogWarning("CameraController: íƒ€ê²Ÿì´ ì§€ì •ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+            enabled = false;          // ë” ì´ìƒ ì—…ë°ì´íŠ¸í•˜ì§€ ì•Šë„ë¡ ë¹„í™œì„±í™”
             return;
         }
 
-        fixedY = transform.position.y; // ÇöÀç Ä«¸Ş¶ó Y°ª °íÁ¤
+        // ì²˜ìŒ ì”¬ì— ë°°ì¹˜ëœ ì¹´ë©”ë¼ì™€ í”Œë ˆì´ì–´ ê°„ì˜ ìƒëŒ€ ê±°ë¦¬ ê¸°ì–µ
+        offset = transform.position - target.position;
     }
 
     void LateUpdate()
     {
+        // ì•ˆì „ì¥ì¹˜
         if (target == null) return;
 
-        transform.position = new Vector3(
-            target.position.x,
-            fixedY,
-            transform.position.z // Z´Â ÀÏ¹İÀûÀ¸·Î -10
-        );
+        // X, Y ëª¨ë‘ ë”°ë¼ê°€ê³  ZëŠ” ì›ë˜ ê°’ ìœ ì§€
+        transform.position = target.position + offset;
     }
 }
