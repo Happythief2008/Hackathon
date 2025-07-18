@@ -4,6 +4,7 @@ public class Attack : MonoBehaviour
 {
     public GameObject bullet;
     public Transform shotPoint;
+    Player_State state;
 
     // Update is called once per frame
     void Update()
@@ -25,7 +26,7 @@ public class Attack : MonoBehaviour
 
             Rigidbody2D rb = newBullet.GetComponent<Rigidbody2D>();
 
-            // rb.linearVelocity = direction * bulletSpeed;
+            rb.linearVelocity = direction * state.bulletSpeed;
         }
     }
 }
