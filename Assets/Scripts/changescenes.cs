@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class changescenes : MonoBehaviour
 {
-    public void main(){
+    public void Title(){
         SceneManager.LoadScene("SampleScene");
     }
     public void GameStart(){
@@ -16,6 +16,10 @@ public class changescenes : MonoBehaviour
     }
     public void Store(){
         SceneManager.LoadScene("SampleScene");
+    }
+    public void Exit(){
+       Debug.Log("게임 종료");
+       Application.Quit();
     }
     
 }
