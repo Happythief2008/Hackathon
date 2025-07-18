@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -7,13 +8,13 @@ public class Bullet : MonoBehaviour
     Player_State state;
 
     public GameObject player;
+    float distance;
 
-    void Start()
+    void Update()
     {
-        float x = transform.position.x - player.transform.position.x;
-        float y = transform.position.y - player.transform.position.y;
+        distance = Vector2.Distance(player.transform.position, transform.position);
 
-        if (GetComponent<Rigidbody>() != null)
+        if (distance >= state.intersection)
         {
             Destroy(gameObject, 5);
         }
