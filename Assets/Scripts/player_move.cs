@@ -6,7 +6,7 @@ public class player_move : MonoBehaviour
     Player_State state;
     bool canDash = true;
     bool isDashing = false;
-    bool isJumping = false; // Ãß°¡
+    bool isJumping = false;
     Animator animator;
 
     Rigidbody2D rb;
@@ -94,11 +94,15 @@ public class player_move : MonoBehaviour
         canDash = false;
         isDashing = true;
 
+        Color originalColor = playerSpriteRenderer.color;
+        playerSpriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.5f);
+
         Vector2 originalVelocity = rb.linearVelocity;
         rb.linearVelocity = new Vector2(direction * state.dashspeed, 0);
 
         yield return new WaitForSeconds(state.dashcoolTime);
 
+        playerSpriteRenderer.color = originalColor;
         isDashing = false;
         rb.linearVelocity = originalVelocity;
 

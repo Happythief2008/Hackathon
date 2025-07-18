@@ -11,6 +11,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/audio_test.unity
     guid: 87e024451025512459c337554e4ed684
+  - enabled: 1
+    path: Assets/Scenes/Main_Title.unity
+    guid: ec7ae44033b60e44596f0ddd51057b82
+  - enabled: 1
+    path: Assets/Scenes/PlayerMove_test.unity
+    guid: c96c41f1c4ea23d4ea57cfea97006cb7
+  - enabled: 1
+    path: Assets/Scenes/Amulet.unity
+    guid: 160ae12c2937c3345bde997c42cd04df
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
