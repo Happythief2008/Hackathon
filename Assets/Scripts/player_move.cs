@@ -17,21 +17,28 @@ public class player_move : MonoBehaviour
     void Update()
     {
         move();
-        jump();
+        Jump();
     }
     void move(){
         float x = Input.GetAxisRaw("Horizontal");
         Vector2 move=new Vector2(x,0);
         transform.position+=(Vector3)(move*moveSpeed*Time.deltaTime);
     }
-    void jump(){
-        if(Input.GetKeyDown(KeyCode.W)&&jumpcount>0){
+    void Jump(){
+
+        if(Input.GetKeyDown(KeyCode.J)&&jumpcount>0){
         jumpcount--;
         
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f);
         rb.linearVelocity=new Vector2(rb.linearVelocity.x,jumppower);
         }
     }
+
+    void Dash()
+    {
+
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("ground")&&jumpcount!=maxjumpcount){
