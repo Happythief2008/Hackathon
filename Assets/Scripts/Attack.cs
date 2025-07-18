@@ -12,37 +12,16 @@ public class Attack : MonoBehaviour
 
     Animator animator;
 
-    public GameObject squareObject;
-
     private void Start()
     {
         state = FindObjectOfType<Player_State>();
         if (state == null)
             Debug.LogError("Player_State 컴포넌트를 찾을 수 없습니다!");
 
-        if (squareObject == null)
-        {
-            squareObject = GameObject.Find("Square");
-            if (squareObject == null)
-            {
-                Debug.LogWarning("Square 오브젝트를 찾을 수 없습니다.");
-            }
-        }
-
-        // 크기 줄이고 90도 회전 적용
-        if (squareObject != null)
-        {
-            // 크기 줄이기 (원래 크기의 0.5배로 줄이는 예시)
-            squareObject.transform.localScale = new Vector3(0.5f, 0.5f, 1);
-
-            // Z축 기준 90도 회전
-            squareObject.transform.rotation = Quaternion.Euler(0, 0, 90);
-        }
-
         animator = GetComponent<Animator>();
     }
 
-    void LateUpdate()
+    void Update()
     {
         float moveInput = Input.GetAxisRaw("Horizontal");
 
@@ -54,12 +33,6 @@ public class Attack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I) && allowShooting)
         {
             StartCoroutine(ShootWithDelay(0.5f));
-        }
-
-        if (squareObject != null)
-        {
-            squareObject.transform.localScale = new Vector3(0.5f, 0.5f, 1);
-            squareObject.transform.rotation = Quaternion.Euler(0, 0, 90);
         }
     }
 
