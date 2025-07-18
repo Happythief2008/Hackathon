@@ -1,76 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Player_State state;
-    public Enemy_Damage ED;
-    public GameObject player;
-    public Transform enemy;
+    public int damage = 10;          // í•œ ë°œë‹¹ ë°ë¯¸ì§€
+    public float speed = 12f;        // ë°œì‚¬ ì†ë„
+    public Vector2 direction = Vector2.right; // ë°œì‚¬ ë°©í–¥ (ì™¸ë¶€ì—ì„œ ì§€ì •)
 
-    public GameObject shooter;
-
-    private void Start()
+    void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        enemy = GameObject.FindWithTag("Enemy").transform;
+        // ì§€ì •ëœ ë°©í–¥ìœ¼ë¡œ ë°œì‚¬
+        GetComponent<Rigidbody2D>().linearVelocity = direction * speed;
+        Destroy(gameObject, 3f); // ìˆ˜ëª… ì œí•œ
     }
 
-    void Update()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (shooter == null)
-        {
-            Debug.LogWarning("BulletÀÇ shooter°¡ ÇÒ´çµÇÁö ¾Ê¾Ò½À´Ï´Ù!");
-            return;
-        }
+        if (!other.CompareTag("Enemy")) return;
 
-        if (state == null)
-        {
-            Debug.LogWarning("Bullet: state°¡ ÇÒ´çµÇÁö ¾Ê¾Ò½À´Ï´Ù!");
-        }
+        EnemyHealth eh = other.GetComponent<EnemyHealth>();
+        if (eh != null)
+            eh.TakeDamage(damage);
 
-        float distance = Vector2.Distance(shooter.transform.position, transform.position);
-
-        if (distance >= state.intersection)
-        {
-            Destroy(gameObject);
-        }
-
-    }
-
-    public void SetState(Player_State playerState)
-    {
-        state = playerState;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy") && shooter.CompareTag("Player"))
-        {
-            if (enemy != null)
-            {
-                ED.TakeDamage();
-            }
-            Destroy(gameObject);
-        }
-
-        // Player ¸Â¾ÒÀ» ¶§
-        else if (other.CompareTag("Player") && shooter.CompareTag("Enemy"))
-        {
-            Player_Damage player = other.GetComponent<Player_Damage>();
-            if (player != null)
-            {
-                player.TakeDamage(ED.enemyDamage);
-            }
-            Destroy(gameObject);
-        }
-
-        // ÀÚ±â ÀÚ½Å ¸ÂÀº °æ¿ì Á¦¿Ü (¿É¼Ç)
-        else if (other.gameObject == shooter)
-        {
-            return;
-        }
+        Destroy(gameObject);
     }
 }

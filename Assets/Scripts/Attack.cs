@@ -5,14 +5,18 @@ public class Attack : MonoBehaviour
 {
     [SerializeField] Player_State state;
 
-    public GameObject bullet;
+    [Header("Prefabs & Points")]
+    public GameObject bulletPrefab;
     public Transform shotPoint;
-    bool allowShooting = true;
-    public bool isFacingRight = true;
 
+    [Header("Settings")]
+    public float preShootDelay = 0.5f;
+    bool allowShooting = true;
+
+    bool isFacingRight = true;
     Animator animator;
 
-    private void Start()
+    void Start()
     {
         state = FindObjectOfType<Player_State>();
         if (state == null)
@@ -24,46 +28,31 @@ public class Attack : MonoBehaviour
     void Update()
     {
         float moveInput = Input.GetAxisRaw("Horizontal");
-
-        if (moveInput > 0)
-            isFacingRight = true;
-        else if (moveInput < 0)
-            isFacingRight = false;
+        if (moveInput > 0) isFacingRight = true;
+        else if (moveInput < 0) isFacingRight = false;
 
         if (Input.GetKeyDown(KeyCode.I) && allowShooting)
-        {
-            StartCoroutine(ShootWithDelay(0.5f));
-        }
+            StartCoroutine(ShootWithDelay(preShootDelay));
     }
 
     IEnumerator ShootWithDelay(float delay)
     {
         allowShooting = false;
         animator.SetTrigger("Attack");
-
         yield return new WaitForSeconds(delay);
 
-        if (state == null)
+        GameObject bulletGO = Instantiate(bulletPrefab, shotPoint.position, Quaternion.identity);
+
+        // 방향에 따라 스케일 반전
+        bulletGO.transform.localScale = new Vector3(isFacingRight ? 1 : -1, 1, 1);
+
+        // Bullet 스크립트 설정
+        Bullet bullet = bulletGO.GetComponent<Bullet>();
+        if (bullet != null)
         {
-            Debug.Log("state가 null임");
-            yield break;
-        }
-
-        Vector3 offset = isFacingRight ? new Vector3(0.5f, 0, 0) : new Vector3(-0.5f, 0, 0);
-        Vector3 spawnPosition = shotPoint.position + offset;
-
-        GameObject newBullet = Instantiate(bullet, shotPoint.position, Quaternion.identity);
-        newBullet.transform.localScale = new Vector3(isFacingRight ? 1 : -1, 1, 1);
-
-        Rigidbody2D rb = newBullet.GetComponent<Rigidbody2D>();
-        Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
-        rb.linearVelocity = direction * state.shootingSpeed;
-
-        Bullet bulletScript = newBullet.GetComponent<Bullet>();
-        if (bulletScript != null)
-        {
-            bulletScript.player = this.gameObject;
-            bulletScript.state = this.state;
+            bullet.damage = state.Damage;
+            bullet.speed = state.shootingSpeed;
+            bullet.direction = isFacingRight ? Vector2.right : Vector2.left;
         }
 
         yield return new WaitForSeconds(state.shootingCooltime);

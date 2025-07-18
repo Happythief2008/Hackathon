@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/PlayerMove_test.unity
     guid: c96c41f1c4ea23d4ea57cfea97006cb7
   - enabled: 1
+    path: Assets/Scenes/Stage2.unity
+    guid: 3d9b8b1db23a18a40b3ba3be963495f1
+  - enabled: 1
     path: Assets/Scenes/Amulet.unity
     guid: 160ae12c2937c3345bde997c42cd04df
   m_configObjects:
