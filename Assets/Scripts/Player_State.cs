@@ -7,7 +7,9 @@ public class Player_State : MonoBehaviour
     public float shootingSpeed = 5; // 총알 속도
     public float shootingCooltime = 0.5f; // 공격 속도
     public float intersection = 0; // 사거리
-    public float DashSpeed = 10; 
-    public float DashCoolTime = 0.3f;
-    public float PlayerMoveSpeed = 5;
+    public float dashspeed = 10; 
+    public float dashcoolTime = 0.3f;
+    public float PlayerMoveSpeed = 9;
+    public float jumpPower = 7;
+    public int jumpCnt = 0;
 }
