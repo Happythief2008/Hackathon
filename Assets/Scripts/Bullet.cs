@@ -5,12 +5,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] public Player_State state;
+    public Player_State state;
     public GameObject player;
-        private void Start()
-    {
-        state = GetComponent<Player_State>();
-    }
 
     void Update()
     {
@@ -31,5 +27,11 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+    }
+
+    public void SetState(Player_State playerState)
+    {
+        state = playerState;
     }
 }
