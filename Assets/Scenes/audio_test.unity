@@ -543,12 +543,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c4ce8c1b721bc4c96d172a56d14286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmClip: {fileID: 8300000, guid: da40755a426775e4c8af283a296198b2, type: 3}
-  bgmVolume: 0.5
-  sfxClips:
-  - {fileID: 0}
-  sfxVolume: 1
-  sfxChannels: 5
+  Sounds: []
+  _tracks: []
+  PlayingMusic: 
 --- !u!4 &1903314959
 Transform:
   m_ObjectHideFlags: 0
