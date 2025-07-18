@@ -12,4 +12,6 @@ public class Player_State : MonoBehaviour
     public float PlayerMoveSpeed = 9;
     public float jumpPower = 7;
     public int jumpCnt = 0;
+    public bool fire = false;
+    public int fireDamage = 0;
 }
