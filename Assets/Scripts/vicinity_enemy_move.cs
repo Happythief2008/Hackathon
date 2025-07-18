@@ -74,7 +74,7 @@ public class vicinity_enemy_move : MonoBehaviour
         {
             movestop=true;
 
-            player.GetComponent<Player_Damage>()?.TakeDamage(Damage);
+            //player.GetComponent<player_move>()?.TakeDamage(Damage);
         }
     }
      private void OnCollisionExit2D(Collision2D other) {
