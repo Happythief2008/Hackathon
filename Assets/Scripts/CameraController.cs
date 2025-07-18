@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     public Transform target; // 따라갈 대상 (플레이어)
     private float fixedY; // 카메라 Y 고정값
