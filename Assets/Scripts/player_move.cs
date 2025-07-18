@@ -6,13 +6,19 @@ public class player_move : MonoBehaviour
     Player_State state;
     bool canDash = true;
     bool isDashing = false;
+    Animator animator;
 
     Rigidbody2D rb;
+    SpriteRenderer playerSpriteRenderer;
+
+    Coroutine stopRunningCoroutine;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         state = GetComponent<Player_State>();
+        playerSpriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -30,13 +36,39 @@ public class player_move : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         Vector2 move = new Vector2(x, 0);
         transform.position += (Vector3)(move * state.PlayerMoveSpeed * Time.deltaTime);
+
+        if (x != 0)
+        {
+            if (stopRunningCoroutine != null)
+            {
+                StopCoroutine(stopRunningCoroutine);
+                stopRunningCoroutine = null;
+            }
+
+            playerSpriteRenderer.flipX = x < 0;
+            animator.SetBool("Isrunning", true);
+        }
+        else
+        {
+            if (stopRunningCoroutine == null)
+            {
+                stopRunningCoroutine = StartCoroutine(StopRunningDelayed());
+            }
+        }
+    }
+
+    IEnumerator StopRunningDelayed()
+    {
+        yield return new WaitForSeconds(0.045f);
+        animator.SetBool("Isrunning", false);
+        stopRunningCoroutine = null;
     }
 
     private void PlayerJump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && state.jumpCnt < 2)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // y속도만 초기화
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
             rb.AddForce(Vector2.up * state.jumpPower, ForceMode2D.Impulse);
             state.jumpCnt++;
         }
@@ -60,14 +92,14 @@ public class player_move : MonoBehaviour
         isDashing = true;
 
         Vector2 originalVelocity = rb.linearVelocity;
-        rb.linearVelocity = new Vector2(direction * state.dashspeed, 0); // 대시 y속도 제거
+        rb.linearVelocity = new Vector2(direction * state.dashspeed, 0);
 
         yield return new WaitForSeconds(state.dashcoolTime);
 
         isDashing = false;
         rb.linearVelocity = originalVelocity;
 
-        yield return new WaitForSeconds(state.dashcoolTime); // 쿨타임
+        yield return new WaitForSeconds(state.dashcoolTime);
         canDash = true;
     }
 
