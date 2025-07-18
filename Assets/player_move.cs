@@ -27,6 +27,7 @@ public class player_move : MonoBehaviour
     void jump(){
         if(Input.GetKeyDown(KeyCode.W)&&jumpcount>0){
         jumpcount--;
+        
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f);
         rb.linearVelocity=new Vector2(rb.linearVelocity.x,jumppower);
         }
