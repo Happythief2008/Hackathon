@@ -11,7 +11,7 @@ public class Attack : MonoBehaviour
 
     private void Start()
     {
-        state = GetComponent<Player_State>();
+        state = FindObjectOfType<Player_State>();
         if (state == null)
             Debug.LogError("Player_State 컴포넌트를 찾을 수 없습니다!");
     }

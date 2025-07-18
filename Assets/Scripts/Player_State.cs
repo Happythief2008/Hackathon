@@ -9,7 +9,18 @@ public class Player_State : MonoBehaviour
     public float intersection = 10; // »ç°Å¸®
     public float dashspeed = 10; 
     public float dashcoolTime = 0.3f;
+    public float dashInvincibilityTime = 0;
     public float PlayerMoveSpeed = 9;
     public float jumpPower = 7;
     public int jumpCnt = 0;
+    public bool fire = false;
+    public int fireDamage = 0;
+    public int Knockback = 0;
+    public int Wonhon = 0;
+
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 }
+
