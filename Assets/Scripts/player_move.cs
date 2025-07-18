@@ -25,7 +25,7 @@ public class player_move : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            rb.AddForce(Vector2.right*)
+            // rb.AddForce(Vector2.right*)
         }
     }
 }

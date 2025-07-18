@@ -351,6 +351,8 @@ GameObject:
   - component: {fileID: 1246372658}
   - component: {fileID: 1246372657}
   - component: {fileID: 1246372656}
+  - component: {fileID: 1246372659}
+  - component: {fileID: 1246372660}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -370,10 +372,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26f631348a78b3244a52beba564e5613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  bulletSpeed: 5
+  state: {fileID: 0}
   bullet: {fileID: 3573284850550598192, guid: 7abb9a0d889338540baa5e0ffec49495, type: 3}
   shotPoint: {fileID: 1246372658}
+  isFacingRight: 1
 --- !u!212 &1246372657
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -444,6 +446,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1246372659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246372655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a460f2046e652745b870825006f84ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hp: 0
+  Damage: 0
+  shootingSpeed: 5
+  shootingCooltime: 1
+  intersection: 3
+  DashSpeed: 0
+--- !u!114 &1246372660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246372655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99152510cf4b73d40866782e4cb37a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
