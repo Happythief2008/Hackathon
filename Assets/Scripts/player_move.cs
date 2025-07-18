@@ -4,38 +4,28 @@ using UnityEngine.U2D.IK;
 
 public class player_move : MonoBehaviour
 {
-    [SerializeField] float moveSpeed;
+    public float moveSpeed;
     Rigidbody2D rb;
-    [SerializeField] int maxjumpcount;
-    [SerializeField] float jumppower;
-    int jumpcount;
     void Start()
     {
-        jumpcount=maxjumpcount;
         rb=GetComponent<Rigidbody2D>();
     }
     void Update()
     {
-        move();
-        jump();
+        PlayeMove();
     }
-    void move(){
+
+    void PlayeMove(){
         float x = Input.GetAxisRaw("Horizontal");
         Vector2 move=new Vector2(x,0);
         transform.position+=(Vector3)(move*moveSpeed*Time.deltaTime);
     }
-    void jump(){
-        if(Input.GetKeyDown(KeyCode.W)&&jumpcount>0){
-        jumpcount--;
-        
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f);
-        rb.linearVelocity=new Vector2(rb.linearVelocity.x,jumppower);
-        }
-    }
-    void OnCollisionEnter2D(Collision2D collision)
+
+    void PlayerDash()
     {
-        if(collision.gameObject.CompareTag("ground")&&jumpcount!=maxjumpcount){
-            jumpcount=maxjumpcount;
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+
         }
     }
 }
