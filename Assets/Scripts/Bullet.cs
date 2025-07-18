@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        Destroy(gameObject, 5);
-    }
+    Player_State state;
 
-    // Update is called once per frame
+    public GameObject player;
+    float distance;
+
     void Update()
     {
+        distance = Vector2.Distance(player.transform.position, transform.position);
 
+        if (distance >= state.intersection)
+        {
+            Destroy(gameObject, 5);
+        }
     }
 }
