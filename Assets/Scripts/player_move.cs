@@ -6,6 +6,7 @@ public class player_move : MonoBehaviour
     Player_State state;
     bool canDash = true;
     bool isDashing = false;
+    bool isJumping = false; // 추가
     Animator animator;
 
     Rigidbody2D rb;
@@ -71,6 +72,8 @@ public class player_move : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
             rb.AddForce(Vector2.up * state.jumpPower, ForceMode2D.Impulse);
             state.jumpCnt++;
+            isJumping = true;
+            animator.SetBool("Isjumping", true);
         }
     }
 
@@ -108,23 +111,8 @@ public class player_move : MonoBehaviour
         if (collision.gameObject.CompareTag("ground"))
         {
             state.jumpCnt = 0;
+            isJumping = false;
+            animator.SetBool("Isjumping", false);
         }
-    }
-
-    public void TakeDamage(int Damage)
-    {
-        state.Hp -= Damage;
-        Debug.Log($"{gameObject.name}이(가) {Damage}의 데미지를 받았습니다. 현재 체력: {state.Hp}");
-
-        if (state.Hp <= 0)
-        {
-            Die();
-        }
-    }
-    void Die()
-    {
-        Debug.Log($"{gameObject.name}이(가) 사망했습니다.");
-
-        Destroy(gameObject);
     }
 }

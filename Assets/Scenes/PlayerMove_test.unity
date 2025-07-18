@@ -493,9 +493,14 @@ MonoBehaviour:
   intersection: 10
   dashspeed: 10
   dashcoolTime: 0.3
+  dashInvincibilityTime: 0
   PlayerMoveSpeed: 9
   jumpPower: 7
   jumpCnt: 0
+  fire: 0
+  fireDamage: 0
+  Knockback: 0
+  Wonhon: 0
 --- !u!114 &1987122336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,7 +658,7 @@ Animator:
   m_GameObject: {fileID: 1987122333}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c6e9787f03d17aa418e7f69fa46c8ea9, type: 2}
+  m_Controller: {fileID: 9100000, guid: b2b3244e1091933468391870f72e0b8e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
