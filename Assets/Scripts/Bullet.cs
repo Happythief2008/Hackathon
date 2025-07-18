@@ -6,13 +6,22 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public Player_State state;
-    public GameObject player;
+    public Transform player;
+    public Transform Enemy;
+
+    public GameObject shooter;
+
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player").transform;
+        Enemy = GameObject.FindWithTag("Enemy").transform;
+    }
 
     void Update()
     {
-        if (player == null)
+        if (shooter == null)
         {
-            Debug.LogWarning("Bullet의 player가 할당되지 않았습니다!");
+            Debug.LogWarning("Bullet의 shooter가 할당되지 않았습니다!");
             return;
         }
 
@@ -21,7 +30,7 @@ public class Bullet : MonoBehaviour
             Debug.LogWarning("Bullet: state가 할당되지 않았습니다!");
         }
 
-        float distance = Vector2.Distance(player.transform.position, transform.position);
+        float distance = Vector2.Distance(shooter.transform.position, transform.position);
 
         if (distance >= state.intersection)
         {
@@ -33,5 +42,35 @@ public class Bullet : MonoBehaviour
     public void SetState(Player_State playerState)
     {
         state = playerState;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy") && shooter.CompareTag("Player"))
+        {
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(state.Damage);
+            }
+            Destroy(gameObject);
+        }
+
+        // Player 맞았을 때
+        else if (other.CompareTag("Player") && shooter.CompareTag("Enemy"))
+        {
+            Player_Damage player = other.GetComponent<Player_Damage>();
+            if (player != null)
+            {
+                player.TakeDamage(Enemy_Damage.enemyDamage);
+            }
+            Destroy(gameObject);
+        }
+
+        // 자기 자신 맞은 경우 제외 (옵션)
+        else if (other.gameObject == shooter)
+        {
+            return;
+        }
     }
 }

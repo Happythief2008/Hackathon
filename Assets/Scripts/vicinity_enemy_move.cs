@@ -12,11 +12,6 @@ public class vicinity_enemy_move : MonoBehaviour
     [SerializeField] float DashSpeed;
     [SerializeField]bool movestop=false;
 
-    public int Hp = 100;
-    public int maxHp;
-
-    public int Damage = 10;
-
     public Player_State playerState;
 
     public enum State{
@@ -28,7 +23,6 @@ public class vicinity_enemy_move : MonoBehaviour
     void Start()
     {
         playerState = FindObjectOfType<Player_State>();
-        maxHp = Hp;
         player = GameObject.FindWithTag("Player").transform;
     }
     void Update()
@@ -80,7 +74,7 @@ public class vicinity_enemy_move : MonoBehaviour
         {
             movestop=true;
 
-            player.GetComponent<player_move>()?.TakeDamage(Damage);
+            player.GetComponent<Player_Damage>()?.TakeDamage(Damage);
         }
     }
      private void OnCollisionExit2D(Collision2D other) {
@@ -89,22 +83,4 @@ public class vicinity_enemy_move : MonoBehaviour
             movestop=false;
         }
      }
-
-    public void TakeDamage()
-    {
-        Hp -= playerState.Damage;
-        Debug.Log($"{gameObject.name}이(가) {playerState.Damage}의 데미지를 받았습니다. 현재 체력: {Hp}");
-
-        if (Hp <= 0)
-        {
-            Die();
-        }
-    }
-
-    void Die()
-    {
-        Debug.Log($"{gameObject.name}이(가) 사망했습니다.");
-        
-        Destroy(gameObject);
-    }
 }

@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6126384313697715129
 Transform:
   m_ObjectHideFlags: 0
@@ -107,6 +107,10 @@ MonoBehaviour:
   CanAttack_distance: 4
   DashSpeed: 4
   movestop: 0
+  Hp: 100
+  maxHp: 0
+  Damage: 10
+  playerState: {fileID: 0}
 --- !u!58 &4415576156854706535
 CircleCollider2D:
   m_ObjectHideFlags: 0
