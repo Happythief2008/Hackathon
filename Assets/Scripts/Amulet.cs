@@ -11,6 +11,7 @@ public class Amulet : MonoBehaviour
     [SerializeField]
     private TMP_Dropdown dropdown;
     public Player_State playerState;
+    public Store_Button Button;
     // private string[] arrayClass = new string[8] { "공격력 증가", "공격 속도 증가", "공격 사거리 증가", "불속성 추가", "화염 데미지 증가", "넉백 거리 증가", "회피의 무적 시간 증가", "회피의 쿨타임 시간 감소" };
     private string[] arrayClass = new string[8] { "1", "2", "3", "4", "5", "6", "7", "8" };
 
@@ -128,18 +129,21 @@ public class Amulet : MonoBehaviour
         playerState.dashInvincibilityTime = baseDashInvincibilityTime;
         playerState.dashcoolTime = baseDashCooltime;
 
-        switch (index)
+        if (Button.Check(index))
         {
-            case 0: playerState.Damage += 5; break;
-            case 1: playerState.shootingCooltime -= 5; break;
-            case 2: playerState.intersection += 5; break;
-            case 3: playerState.fire = true; break;
-            case 4: playerState.fireDamage += 5; break;
-            case 5: playerState.shootingCooltime -= 5; break;
-            case 6: playerState.Knockback += 5; break;
-            case 7: playerState.dashInvincibilityTime += 5; break;
-            case 8: playerState.dashcoolTime -= 5; break;
-            default: break;
+            switch (index)
+            {
+                case 0: playerState.Damage += 5; break;
+                case 1: playerState.shootingCooltime -= 5; break;
+                case 2: playerState.intersection += 5; break;
+                case 3: playerState.fire = true; break;
+                case 4: playerState.fireDamage += 5; break;
+                case 5: playerState.shootingCooltime -= 5; break;
+                case 6: playerState.Knockback += 5; break;
+                case 7: playerState.dashInvincibilityTime += 5; break;
+                case 8: playerState.dashcoolTime -= 5; break;
+                default: break;
+            }
         }
 
         SavePlayerState();
