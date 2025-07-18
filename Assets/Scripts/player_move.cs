@@ -73,7 +73,7 @@ public class player_move : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("ground"))
         {
             state.jumpCnt = 0;
         }

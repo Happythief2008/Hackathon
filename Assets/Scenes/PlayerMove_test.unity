@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 703210066}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -266,6 +266,8 @@ GameObject:
   - component: {fileID: 1255349524}
   - component: {fileID: 1255349523}
   - component: {fileID: 1255349522}
+  - component: {fileID: 1255349528}
+  - component: {fileID: 1255349527}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -285,8 +287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99152510cf4b73d40866782e4cb37a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  maxjumpcount: 5
 --- !u!50 &1255349523
 Rigidbody2D:
   serializedVersion: 5
@@ -313,7 +313,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &1255349524
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -421,6 +421,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1255349527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255349521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26f631348a78b3244a52beba564e5613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: {fileID: 0}
+  bullet: {fileID: 0}
+  shotPoint: {fileID: 0}
+  isFacingRight: 1
+--- !u!114 &1255349528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255349521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a460f2046e652745b870825006f84ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hp: 1000
+  Damage: 10
+  shootingSpeed: 30
+  shootingCooltime: 0.3
+  intersection: 10
+  dashspeed: 10
+  dashcoolTime: 0.3
+  PlayerMoveSpeed: 9
+  jumpPower: 7
+  jumpCnt: 0
 --- !u!1 &1341181048
 GameObject:
   m_ObjectHideFlags: 0
