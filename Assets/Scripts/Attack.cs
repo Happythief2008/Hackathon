@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public float moveSpeed = 5f; public float bulletSpeed = 5f;
     public GameObject bullet;
     public Transform shotPoint;
 
@@ -14,7 +13,7 @@ public class Attack : MonoBehaviour
     
     void Shoot()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction = (mouseWorldPosition - shotPoint.position).normalized;
@@ -26,7 +25,7 @@ public class Attack : MonoBehaviour
 
             Rigidbody2D rb = newBullet.GetComponent<Rigidbody2D>();
 
-            rb.linearVelocity = direction * bulletSpeed;
+            // rb.linearVelocity = direction * bulletSpeed;
         }
     }
 }
