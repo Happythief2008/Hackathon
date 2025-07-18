@@ -39,12 +39,14 @@ public class Attack : MonoBehaviour
                 return;
             }
 
-            Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
+            Vector3 offset = isFacingRight ? new Vector3(0.5f, 0, 0) : new Vector3(-0.5f, 0, 0);
+            Vector3 spawnPosition = shotPoint.position + offset;
 
-            GameObject newBullet = Instantiate(bullet, shotPoint.position, transform.rotation);
-            newBullet.transform.rotation = Quaternion.Euler(0, 0, isFacingRight ? 0 : 180);
+            GameObject newBullet = Instantiate(bullet, shotPoint.position, Quaternion.identity);
+            newBullet.transform.localScale = new Vector3(isFacingRight ? 1 : -1, 1, 1);
 
             Rigidbody2D rb = newBullet.GetComponent<Rigidbody2D>();
+            Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
             rb.linearVelocity = direction * state.shootingSpeed;
 
             Bullet bulletScript = newBullet.GetComponent<Bullet>();
