@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 50071940}
   - component: {fileID: 50071939}
   - component: {fileID: 50071938}
+  - component: {fileID: 50071941}
   - component: {fileID: 50071937}
   m_Layer: 0
   m_Name: Circle
@@ -272,6 +273,18 @@ Transform:
   - {fileID: 361091898}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &50071941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50071935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99152510cf4b73d40866782e4cb37a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &291836797
 GameObject:
   m_ObjectHideFlags: 0

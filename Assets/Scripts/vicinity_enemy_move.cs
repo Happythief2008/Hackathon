@@ -19,12 +19,6 @@ public class vicinity_enemy_move : MonoBehaviour
 
     public Player_State playerState;
 
-    public void Start()
-    {
-        playerState = FindObjectOfType<Player_State>();
-        maxHp = Hp;
-    }
-
     public enum State{
         rush,
         canrecongnize,
@@ -33,7 +27,9 @@ public class vicinity_enemy_move : MonoBehaviour
     private State _state=State.norecongnize;
     void Start()
     {
-         player = GameObject.FindWithTag("Player").transform;
+        playerState = FindObjectOfType<Player_State>();
+        maxHp = Hp;
+        player = GameObject.FindWithTag("Player").transform;
     }
     void Update()
     {   
