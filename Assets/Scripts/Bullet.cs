@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
+    Player_State state;
+
+    public GameObject player;
+
     void Start()
     {
-        Destroy(gameObject, 5);
-    }
+        float x = transform.position.x - player.transform.position.x;
+        float y = transform.position.y - player.transform.position.y;
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        if (GetComponent<Rigidbody>() != null)
+        {
+            Destroy(gameObject, 5);
+        }
     }
 }

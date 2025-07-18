@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    Player_State state;
+
     public GameObject bullet;
     public Transform shotPoint;
-    Player_State state;
 
     // Update is called once per frame
     void Update()
