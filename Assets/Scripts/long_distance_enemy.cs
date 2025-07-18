@@ -18,6 +18,10 @@ public class long_distance_enemy : MonoBehaviour
         norecongnize
     }
     private State _state=State.norecongnize;
+    void Start()
+    {
+         player = GameObject.FindWithTag("Player").transform;
+    }
     void Update()
     {   
         Vector3 dir = player.position - transform.position;
