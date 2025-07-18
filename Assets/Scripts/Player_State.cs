@@ -16,6 +16,8 @@ public class Player_State : MonoBehaviour
     public bool fire = false;
     public int fireDamage = 0;
     public int Knockback = 0;
+    public int Wonhon = 0;
+
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
