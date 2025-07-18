@@ -26,7 +26,7 @@ public class Attack : MonoBehaviour
 
             Rigidbody2D rb = newBullet.GetComponent<Rigidbody2D>();
 
-            rb.linearVelocity = direction * state.bulletSpeed;
+            rb.linearVelocity = direction * state.shootingSpeed;
         }
     }
 }
