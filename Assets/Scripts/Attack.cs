@@ -6,27 +6,12 @@ public class Attack : MonoBehaviour
     public GameObject bullet;
     public Transform shotPoint;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        Move();
         Shoot();
     }
-    void Move()
-    {
-        float hor = Input.GetAxisRaw("Horizontal");
-        float vt = Input.GetAxisRaw("Vertical");
-
-        Vector3 moveVector = new Vector3(hor, vt).normalized;
-        transform.position += moveVector * Time.deltaTime * moveSpeed;
-    }
-
+    
     void Shoot()
     {
         if (Input.GetMouseButtonDown(0))
