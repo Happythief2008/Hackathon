@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class Player_State : MonoBehaviour
 {
-    public int Hp = 0;
-    public int Damage = 0;
-    public int shootingSpeed = 5; // 총알 속도
-    public int shootingCooltime = 1; // 공격 속도
-    public int intersection = 3; // 사거리
-    public int DashSpeed = 0;
+    public int Hp = 1000;
+    public int Damage = 10;
+    public float shootingSpeed = 5; // 총알 속도
+    public float shootingCooltime = 0.5f; // 공격 속도
+    public float intersection = 0; // 사거리
+    public float dashspeed = 10; 
+    public float dashcoolTime = 0.3f;
+    public float PlayerMoveSpeed = 9;
+    public float jumpPower = 7;
+    public int jumpCnt = 0;
 }
