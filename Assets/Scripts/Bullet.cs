@@ -6,15 +6,16 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public Player_State state;
-    public Transform player;
-    public Transform Enemy;
+    public Enemy_Damage ED;
+    public GameObject player;
+    public Transform enemy;
 
     public GameObject shooter;
 
     private void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
-        Enemy = GameObject.FindWithTag("Enemy").transform;
+        player = GameObject.FindWithTag("Player");
+        enemy = GameObject.FindWithTag("Enemy").transform;
     }
 
     void Update()
@@ -48,10 +49,9 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy") && shooter.CompareTag("Player"))
         {
-            Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(state.Damage);
+                ED.TakeDamage();
             }
             Destroy(gameObject);
         }
@@ -62,7 +62,7 @@ public class Bullet : MonoBehaviour
             Player_Damage player = other.GetComponent<Player_Damage>();
             if (player != null)
             {
-                player.TakeDamage(Enemy_Damage.enemyDamage);
+                player.TakeDamage(ED.enemyDamage);
             }
             Destroy(gameObject);
         }

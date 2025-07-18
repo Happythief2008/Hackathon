@@ -17,7 +17,7 @@ public class player_move : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        state = GetComponent<Player_State>();
+        state = FindObjectOfType<Player_State>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }

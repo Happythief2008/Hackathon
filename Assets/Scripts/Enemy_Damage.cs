@@ -5,6 +5,7 @@ public class Enemy_Damage : MonoBehaviour
 {
     public Transform player;
     public Player_State playerState;
+    public Transform enemy;
 
     public int Hp = 100;
     public int currentHp;
@@ -15,6 +16,7 @@ public class Enemy_Damage : MonoBehaviour
     {
         playerState = FindObjectOfType<Player_State>();
         player = GameObject.FindWithTag("Player").transform;
+        enemy = GameObject.FindWithTag("Enemy").transform;
 
         currentHp = Hp;
     }
@@ -23,7 +25,7 @@ public class Enemy_Damage : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            player.GetComponent<Player_Damage>()?.TakeDamage(Damage);
+            player.GetComponent<Player_Damage>()?.TakeDamage(enemyDamage);
         }
     }
 
