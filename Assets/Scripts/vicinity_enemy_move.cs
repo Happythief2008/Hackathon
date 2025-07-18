@@ -31,6 +31,10 @@ public class vicinity_enemy_move : MonoBehaviour
         norecongnize
     }
     private State _state=State.norecongnize;
+    void Start()
+    {
+         player = GameObject.FindWithTag("Player").transform;
+    }
     void Update()
     {   
         
