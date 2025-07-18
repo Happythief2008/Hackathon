@@ -1,17 +1,17 @@
 using UnityEngine;
 
-public class LongDistanceEnemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     public Transform player;
     public float speed = 3f;
 
-    [SerializeField] private float recognizeDistance = 10f;   // �ν� �Ÿ�
-    [SerializeField] private float attackDistance = 5f;       // ��Ÿ�
+    [SerializeField] private float recognizeDistance = 10f;   // 인식 거리
+    [SerializeField] private float attackDistance = 5f;       // 사거리
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
 
-    private float shootCooldown = 2f;  // ��� ���� ���� ���ð�
+    private float shootCooldown = 2f;  // 쏘고 나서 재사용 대기시간
     private float shootTimer = 0f;
 
     void Start()
@@ -19,7 +19,7 @@ public class LongDistanceEnemy : MonoBehaviour
         player = GameObject.FindWithTag("Player")?.transform;
         if (player == null)
         {
-            Debug.LogError("Player �±װ� ���� ������Ʈ�� ã�� �� �����ϴ�!");
+            Debug.LogError("Player 태그가 붙은 오브젝트를 찾을 수 없습니다!");
         }
     }
 
@@ -31,14 +31,14 @@ public class LongDistanceEnemy : MonoBehaviour
 
         if (distance <= recognizeDistance)
         {
-            // �÷��̾� ���� �ٶ󺸱� (2D Z�� ȸ�� ����)
+            // 플레이어 방향 바라보기 (2D Z축 회전 기준)
             Vector3 direction = (player.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
 
             if (distance <= attackDistance)
             {
-                // ��Ÿ� ���̸� ����
+                // 사거리 안이면 공격
                 shootTimer += Time.deltaTime;
                 if (shootTimer >= shootCooldown)
                 {
@@ -48,7 +48,7 @@ public class LongDistanceEnemy : MonoBehaviour
             }
             else
             {
-                // ��Ÿ� ���̸� �÷��̾� ������ �̵� (���ϸ�)
+                // 사거리 밖이면 플레이어 쪽으로 이동 (원하면)
                 Vector3 moveDir = new Vector3(direction.x, direction.y, 0f);
                 transform.position += moveDir * speed * Time.deltaTime;
             }
@@ -59,21 +59,21 @@ public class LongDistanceEnemy : MonoBehaviour
     {
         if (bulletPrefab == null || firePoint == null)
         {
-            Debug.LogWarning("�Ѿ� �������̳� �߻� ��ġ�� �������� �ʾҽ��ϴ�!");
+            Debug.LogWarning("총알 프리팹이나 발사 위치가 설정되지 않았습니다!");
             return;
         }
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
 
-        // �Ѿ� ���� ���� (2D ȸ�� Z�� ����)
+        // 총알 방향 맞춤 (2D 회전 Z축 기준)
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         bullet.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-        // Rigidbody2D�� ����� �������� �̵���Ű��
+        // Rigidbody2D를 사용해 직선으로 이동시키기
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            float bulletSpeed = 10f;  // �Ѿ� �ӵ�
+            float bulletSpeed = 10f;  // 총알 속도
             rb.linearVelocity = direction * bulletSpeed;
         }
     }

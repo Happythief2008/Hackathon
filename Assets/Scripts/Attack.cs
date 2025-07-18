@@ -33,6 +33,27 @@ public class Attack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I) && allowShooting)
         {
             StartCoroutine(ShootWithDelay(0.5f));
+            if (state == null)
+            {
+                Debug.Log("state가 null임");
+                return;
+            }
+
+            Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
+
+            GameObject newBullet = Instantiate(bullet, shotPoint.position, transform.rotation);
+            newBullet.transform.rotation = Quaternion.Euler(0, 0, isFacingRight ? 0 : 180);
+
+            Rigidbody2D rb = newBullet.GetComponent<Rigidbody2D>();
+            rb.linearVelocity = direction * state.shootingSpeed;
+
+            Bullet bulletScript = newBullet.GetComponent<Bullet>();
+            if (bulletScript != null)
+            {
+            }
+
+            allowShooting = false;
+
         }
     }
 
@@ -62,8 +83,7 @@ public class Attack : MonoBehaviour
         Bullet bulletScript = newBullet.GetComponent<Bullet>();
         if (bulletScript != null)
         {
-            bulletScript.player = this.gameObject;
-            bulletScript.state = this.state;
+
         }
 
         yield return new WaitForSeconds(state.shootingCooltime);

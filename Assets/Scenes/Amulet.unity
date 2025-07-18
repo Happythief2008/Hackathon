@@ -364,6 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropdown: {fileID: 64823301}
   playerState: {fileID: 0}
+  Button: {fileID: 0}
 --- !u!1 &113581050
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +463,7 @@ GameObject:
   - component: {fileID: 156900957}
   - component: {fileID: 156900959}
   - component: {fileID: 156900958}
+  - component: {fileID: 156900960}
   m_Layer: 5
   m_Name: Panel (1)
   m_TagString: Untagged
@@ -526,6 +528,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156900956}
   m_CullTransparentMesh: 1
+--- !u!114 &156900960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156900956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8b6bec39d1054146bf240cd41b98d30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropdown: {fileID: 0}
+  playerState: {fileID: 0}
+  Button: {fileID: 0}
 --- !u!1 &196868096
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +587,7 @@ MonoBehaviour:
   fire: 0
   fireDamage: 0
   Knockback: 0
+  Wonhon: 0
 --- !u!212 &196868098
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2843,6 +2861,7 @@ GameObject:
   - component: {fileID: 1203959216}
   - component: {fileID: 1203959218}
   - component: {fileID: 1203959217}
+  - component: {fileID: 1203959220}
   - component: {fileID: 1203959219}
   m_Layer: 5
   m_Name: Panel (2)
@@ -2923,6 +2942,21 @@ MonoBehaviour:
   m_EffectColor: {r: 1, g: 0.34782392, b: 0.29874206, a: 1}
   m_EffectDistance: {x: 5, y: -5}
   m_UseGraphicAlpha: 1
+--- !u!114 &1203959220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203959215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8b6bec39d1054146bf240cd41b98d30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropdown: {fileID: 0}
+  playerState: {fileID: 0}
+  Button: {fileID: 0}
 --- !u!1 &1238758243
 GameObject:
   m_ObjectHideFlags: 0
